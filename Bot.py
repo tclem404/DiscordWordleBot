@@ -46,17 +46,21 @@ async def playWordle(ctx):
             await ctx.send('Word Not a Valid Guess')
             guesses -= 1
         else:
+            # valid guess
             replyMsg = list('_____')
             tempAns = list(answer)
             for i in range(0,5):
+                #checking for greens first
                 if msg[i] == answer[i]:
                     replyMsg[i] = 'G'
                     tempAns[i] = '_'
             for i in range(0,5):
+                # then checking for yellows
                 if (replyMsg[i] == '_' and tempAns.__contains__(msg[i])):
                     replyMsg[i] = 'Y'
                     tempAns[tempAns.index(msg[i])] = '_'
             
+            #converting to a displayable message in discord
             realReply = ''
             for i in range(0,5):
                 if (replyMsg[i] == 'G'):
@@ -65,11 +69,13 @@ async def playWordle(ctx):
                     realReply += ':yellow_square: '
                 else:
                     realReply += ':black_large_square: '
-
+                    
+            # sending message
             await ctx.send(realReply)
             if (replyMsg == list('GGGGG')):
                 guessed = True
     
+    # final message
     if (guessed):
         await ctx.send('Congrats! In only ' + str(guesses) + ' guesses')
     else:

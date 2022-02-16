@@ -61,14 +61,14 @@ async def playWordle(ctx):
                     tempAns[tempAns.index(msg[i])] = '_'
             
             #converting to a displayable message in discord
-            realReply = ''
+            realReply = 'Blocks: '
             for i in range(0,5):
                 if (replyMsg[i] == 'G'):
                     realReply += ':green_square: '
                 elif (replyMsg[i] == 'Y'):
                     realReply += ':yellow_square: '
                 else:
-                    realReply += ':black_large_square: '
+                    realReply += ':white_large_square: '
                     
             # sending message
             await ctx.send(realReply)
